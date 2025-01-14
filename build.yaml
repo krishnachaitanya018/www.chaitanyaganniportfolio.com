@@ -6,7 +6,7 @@ Resources:
     Type: AWS::CodePipeline::Pipeline
     Properties:
       Name: GitHubToS3Pipeline
-      RoleArn: arn:aws:iam::123456789012:role/CodePipelineServiceRole  # Replace with your CodePipeline role ARN
+      RoleArn: arn:aws:iam::373130935772:role/service-role/AWSCodePipelineServiceRole-us-east-1-portfolio-pipeline-1  # Replace with your CodePipeline role ARN
       Stages:
         - Name: Source
           Actions:
