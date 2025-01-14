@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CodePipeline to deploy files from GitHub to S3
+
+Resources:
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: GitHubToS3Pipeline
+      RoleArn: arn:aws:iam::123456789012:role/CodePipelineServiceRole  # Replace with your CodePipeline role ARN
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: SourceAction
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: '1'
+              Configuration:
+                Owner: krishnachaitanya018  # Replace with your GitHub username
+                Repo: chaitanyaganni_profile        # Replace with your repository name
+                Branch: main                # Replace with your branch name
+                OAuthToken: {{arn:aws:secretsmanager:us-east-1:373130935772:secret:GithubToken1-zLDFvr}}  # Use Secrets Manager for token
+              OutputArtifacts:
+                - Name: SourceOutput
+              RunOrder: 1
+
+        - Name: Deploy
+          Actions:
+            - Name: DeployToS3
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: S3
+                Version: '1'
+              Configuration:
+                BucketName: www.chaitanyaganniportfolio.com  # Replace with your S3 bucket name
+                Extract: true
+              InputArtifacts:
+                - Name: SourceOutput
+              RunOrder: 1
+
+  PipelineBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: www.chaitanyaganniportfolio.com  # Replace with your bucket name
+
+Outputs:
+  PipelineId:
+    Value: !Ref Pipeline
+    Description: CodePipeline ID
