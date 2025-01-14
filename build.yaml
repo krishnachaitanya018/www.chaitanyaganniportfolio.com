@@ -18,9 +18,9 @@ Resources:
                 Version: '1'
               Configuration:
                 Owner: krishnachaitanya018  # Replace with your GitHub username
-                Repo: chaitanyaganni_profile        # Replace with your repository name
-                Branch: main                # Replace with your branch name
-                OAuthToken: {{arn:aws:secretsmanager:us-east-1:373130935772:secret:GithubToken1-zLDFvr}}  # Use Secrets Manager for token
+                Repo: chaitanyaganni_profile  # Replace with your repository name
+                Branch: main  # Replace with your branch name
+                OAuthToken: {{resolve:secretsmanager:GithubToken1:SecretString:token}}  # Correct Secrets Manager reference
               OutputArtifacts:
                 - Name: SourceOutput
               RunOrder: 1
