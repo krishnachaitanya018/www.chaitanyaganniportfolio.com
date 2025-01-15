@@ -20,7 +20,7 @@ Resources:
                 Owner: krishnachaitanya018  # Replace with your GitHub username
                 Repo: chaitanyaganni_profile  # Replace with your repository name
                 Branch: main  # Replace with your branch name
-                OAuthToken: {{resolve:secretsmanager:GithubToken1:SecretString:token}}  # Correct Secrets Manager reference
+                OAuthToken: "{{resolve:secretsmanager:GithubToken1:SecretString:token}}"  # Correct Secrets Manager reference
               OutputArtifacts:
                 - Name: SourceOutput
               RunOrder: 1
