@@ -10,7 +10,7 @@ Resources:
       Stages:
         - Name: Source
           Actions:
-            - Name: SourceAction
+            - Name: GitHubSource
               ActionTypeId:
                 Category: Source
                 Owner: ThirdParty
@@ -20,7 +20,7 @@ Resources:
                 Owner: krishnachaitanya018  # Replace with your GitHub username
                 Repo: chaitanyaganni_profile  # Replace with your repository name
                 Branch: main  # Replace with your branch name
-               
+                OAuthToken: "{{resolve:secretsmanager:GithubToken1:SecretString:token}}"  # Secure reference to token
               OutputArtifacts:
                 - Name: SourceOutput
               RunOrder: 1
@@ -35,7 +35,7 @@ Resources:
                 Version: '1'
               Configuration:
                 BucketName: www.chaitanyaganniportfolio.com  # Replace with your S3 bucket name
-                Extract: true
+                Extract: true  # Correct key for extracting files
               InputArtifacts:
                 - Name: SourceOutput
               RunOrder: 1
