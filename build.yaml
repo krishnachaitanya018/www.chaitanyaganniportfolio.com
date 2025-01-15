@@ -1,0 +1,28 @@
+version: 1.0
+stages:
+  - name: Source
+    actions:
+      - name: GitHubSource
+        actionTypeId:
+          category: Source
+          owner: AWS
+          version: 1
+        configuration:
+          GitHub:
+            Owner: krishnachaitanya018
+            Repo: chaitanyaganni_profile
+            Branch: main
+            OAuthToken: "{{resolve:secretsmanager:GithubToken1:SecretString:token}}"
+  - name: Deploy
+    actions:
+      - name: S3Deploy
+        actionTypeId:
+          category: Deploy
+          owner: AWS
+          version: 1
+        configuration:
+          S3Bucket: www.chaitanyaganniportfolio.com
+          ExtractFileBeforeDeploy: true
+          DeploymentRoot: /
+          BucketKey: index.html
+          BucketKey: style.css
