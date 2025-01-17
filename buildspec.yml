@@ -3,7 +3,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd src  # Navigate to the folder containing package.json
       - npm install
   build:
     commands:
@@ -11,4 +10,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'dist'  # Adjust this to where your build outputs files
+  base-directory: 'dist'  # This matches the folder where your build outputs are located
