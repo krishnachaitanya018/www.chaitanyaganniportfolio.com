@@ -1,14 +1,14 @@
-
-Version: 0.2
+version: 0.2
 
 phases:
   install:
     commands:
-       - npm install
+      - cd src  # Navigate to the folder containing package.json
+      - npm install
   build:
-     commands:
-        - npm run buildProduction
+    commands:
+      - npm run buildProduction
 artifacts:
   files:
     - '**/*'
-  base-directory: 'dist'        
+  base-directory: 'dist'  # Adjust this to where your build outputs files
