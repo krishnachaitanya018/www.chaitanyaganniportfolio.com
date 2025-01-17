@@ -1,24 +1,14 @@
-version: 0.2
+
+Version: 0.2
 
 phases:
   install:
     commands:
-      - echo "Installing dependencies (if any)..."
-
+       - npm install
   build:
-    commands:
-      - echo "Building static website..."
-      # Add any build commands if required, for example, npm install or npm run build
-      - echo "Build completed successfully!"
-
-  post_build:
-    commands:
-      - echo "Deploying files to S3 bucket..."
-      - aws s3 sync . s3://www.chaitanyaganniportfolio.com --delete
-      - echo "Deployment completed successfully!"
-
+     commands:
+        - npm run buildProduction
 artifacts:
   files:
-    - index.html
-    - style.css
-  discard-paths: yes
+    - '**/*'
+  base-directory: 'dist'        
