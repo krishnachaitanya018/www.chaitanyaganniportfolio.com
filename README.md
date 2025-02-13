@@ -1,2 +1,1 @@
-# chaitanyaganni_portfolio
-
+# ChaitanyaGanni_Portfolio
